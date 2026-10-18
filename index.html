@@ -266,6 +266,11 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding-top:22px;display
 }
 
 
+
+/* FIX: the banner already contains the Spectrum emblem; prevent a second logo from sitting on top of it */
+.hero-art::before,
+.hero-art::after { display: none !important; }
+.hero-art .hero-emblem { display: none !important; }
 </style>
 </head>
 <body>
