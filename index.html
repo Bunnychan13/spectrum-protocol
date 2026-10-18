@@ -59,7 +59,7 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding-top:22px;display
 @media(max-width:520px){main{padding:0 16px 50px}.nav{padding:12px 16px}.brand{min-width:0}.brand-name{font-size:11px}.brand-sub{font-size:9px}.status{display:none}nav button{padding:9px;font-size:10px}.hero{gap:28px;padding-top:40px}.lead{font-size:14px}.grid,.person-grid{grid-template-columns:1fr}.section{padding-top:40px}.section-head{align-items:start;flex-direction:column}.metric{padding:16px 10px}.metric strong{font-size:21px}.metric span{font-size:9px}.hero-art{min-height:200px}footer{flex-direction:column}}
 
 /* BOOT SEQUENCE + STRONGER SPECTRUM HUD */
-.boot-screen{position:fixed;inset:0;z-index:9999;background:#050607;color:#e6bd67;display:grid;place-items:center;overflow:hidden;font-family:var(--mono);animation:bootFade .8s ease 3.15s forwards;pointer-events:none}
+.boot-screen{position:fixed;inset:0;z-index:9999;background:#050607;color:#e6bd67;display:grid;place-items:center;overflow:hidden;font-family:var(--mono);animation:bootFade .8s ease 11.2s forwards;pointer-events:none}
 .boot-screen:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0 3px,#e6bd6708 4px 5px),radial-gradient(ellipse at center,#20201b 0,#08090a 58%,#020303 100%);}
 .boot-screen:after{content:"";position:absolute;inset:18px;border:1px solid #d8a85b80;clip-path:polygon(0 0,calc(100% - 34px) 0,100% 34px,100% 100%,34px 100%,0 calc(100% - 34px));box-shadow:inset 0 0 30px #d8a85b12}
 .boot-inner{position:relative;z-index:2;width:min(680px,86vw);text-align:center;animation:bootIn .65s ease both}
@@ -71,15 +71,17 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding-top:22px;display
 .boot-title:before{color:#fff0c2;transform:translateX(-2px);clip-path:inset(0 0 55% 0);animation:bootEcho .3s steps(2,end) infinite}
 .boot-title:after{color:#b87936;transform:translateX(2px);clip-path:inset(50% 0 0 0);animation:bootEcho .24s steps(2,end) infinite reverse}
 .boot-sub{font-size:10px;letter-spacing:.19em;color:#9e9279;margin-top:9px}
-.boot-log{margin:24px auto 12px;max-width:420px;text-align:left;color:#a99a78;font-size:10px;line-height:1.9;border-left:1px solid #8d6b37;padding-left:12px}
+.boot-log{margin:24px auto 12px;max-width:420px;min-height:6.2em;text-align:left;color:#a99a78;font-size:10px;line-height:1.9;border-left:1px solid #8d6b37;padding-left:12px}.boot-log .boot-line{display:block;min-height:1.9em;transition:opacity .12s,color .12s,text-shadow .12s}.boot-log .boot-line.active{color:#f3d28b;text-shadow:0 0 8px #e6bd6766}.boot-log .boot-line.glitch{animation:logGlitch .18s steps(2,end) 2;color:#fff0c2;text-shadow:-3px 0 #f1e2bd,3px 0 #a45b2c;transform:translateX(2px)}.boot-check{margin-bottom:5px}.boot-detail{padding-left:10px;color:#93866c;min-height:1.5em}.boot-result{padding-left:10px;color:#e6bd67;min-height:1.5em;font-weight:700;text-shadow:0 0 7px #e6bd6744}.boot-screen.boot-finished{animation:bootFade .8s ease forwards}.boot-title.glitch-now{animation:titleGlitch .16s steps(2,end) 2}
 .boot-progress{height:3px;background:#2b251a;max-width:420px;margin:0 auto;overflow:hidden}
-.boot-progress span{display:block;height:100%;width:0;background:#e6bd67;box-shadow:0 0 12px #e6bd67;animation:bootLoad 2.55s ease forwards}
+.boot-progress span{display:block;height:100%;width:0;background:#e6bd67;box-shadow:0 0 12px #e6bd67;animation:bootLoad 10.8s ease forwards}
 .boot-corner{position:absolute;z-index:2;font-size:9px;letter-spacing:.12em;color:#8f7445}.boot-corner.tl{top:32px;left:34px}.boot-corner.br{right:34px;bottom:30px;text-align:right}
 @keyframes bootFade{to{opacity:0;visibility:hidden}}
 @keyframes bootIn{from{opacity:0;transform:scale(.97);filter:blur(4px)}to{opacity:1;transform:scale(1);filter:blur(0)}}
 @keyframes bootLoad{0%{width:0}35%{width:42%}68%{width:73%}100%{width:100%}}
 @keyframes bootPulse{from{transform:scale(.985);opacity:.8}to{transform:scale(1.02);opacity:1}}
 @keyframes bootEcho{0%,100%{opacity:.12;transform:translateX(0)}50%{opacity:.55;transform:translateX(4px)}}
+@keyframes logGlitch{0%{clip-path:inset(0 0 0 0);transform:translateX(0)}25%{clip-path:inset(10% 0 60% 0);transform:translateX(-4px)}50%{clip-path:inset(50% 0 15% 0);transform:translateX(3px)}100%{clip-path:inset(0 0 0 0);transform:translateX(0)}}
+@keyframes titleGlitch{0%,100%{transform:translateX(0);filter:none}30%{transform:translateX(-3px);filter:contrast(1.7)}60%{transform:translateX(3px);filter:hue-rotate(22deg)}}
 /* HUD corners, corner ticks and restrained scan effects */
 .card,.record,.person,.metric,.notice,.modal,.hero-art{position:relative}
 .card,.record,.person,.modal{background-image:linear-gradient(135deg,#d8a85b08 0 1px,transparent 1px 100%)}
@@ -104,9 +106,9 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding-top:22px;display
   <div class="boot-corner br">SECURE CHANNEL ESTABLISHED<br>INITIALIZING ARCHIVE...</div>
   <div class="boot-inner">
     <div class="boot-mark-wrap"><img class="boot-mark" src="./spectrum-logo.png" alt=""><img class="boot-echo" src="./spectrum-logo.png" alt=""></div>
-    <div class="boot-title" data-text="SPECTRUM PROTOCOL">SPECTRUM PROTOCOL</div>
+    <div class="boot-title" id="bootTitle" data-text="SPECTRUM PROTOCOL">SPECTRUM PROTOCOL</div>
     <div class="boot-sub">BUREAU OF SPECTRAL OVERSIGHT</div>
-    <div class="boot-log">&gt; Проверка защищённого канала... OK<br>&gt; Синхронизация спектрального узла... OK<br>&gt; Загрузка архива и личных дел...</div>
+    <div class="boot-log" id="bootLog" aria-live="polite"></div>
     <div class="boot-progress"><span></span></div>
   </div>
 </div>
@@ -202,9 +204,121 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding-top:22px;display
 document.querySelectorAll('.hero-art,.card,.record,.person,.modal').forEach(el=>{
   ['tl','tr','bl','br'].forEach(pos=>{const corner=document.createElement('span');corner.className='hud-corner '+pos;corner.setAttribute('aria-hidden','true');el.appendChild(corner);});
 });
-// Remove the startup layer from the accessibility tree after the animation finishes.
-window.setTimeout(()=>{const boot=document.getElementById('bootScreen');if(boot){boot.setAttribute('aria-hidden','true');window.setTimeout(()=>boot.remove(),900);}},3300);
+// Sequential terminal diagnostics: each check runs, dots animate, then a result appears.
+// Completed lines stay on screen while the next check begins.
+const bootChecks = [
+  { label: "ИНИЦИАЛИЗАЦИЯ ЗАЩИЩЁННОГО КАНАЛА", detail: "Установка защищённого соединения", result: "OK" },
+  { label: "ПРОВЕРКА УРОВНЯ ДОСТУПА", detail: "Идентификация оператора", result: "ПОДТВЕРЖДЕНО" },
+  { label: "СИНХРОНИЗАЦИЯ УЗЛА СПЕКТР", detail: "Поиск защищённого сервера", result: "OK" },
+  { label: "ЗАГРУЗКА АРХИВА", detail: "Досье: 147 // Инциденты: 032", result: "ЗАГРУЖЕНО" },
+  { label: "ПРОВЕРКА ЦЕЛОСТНОСТИ ДАННЫХ", detail: "Сверка контрольных сумм", result: "OK" },
+  { label: "АКТИВАЦИЯ МОНИТОРИНГА", detail: "Спектральный узел", result: "АКТИВЕН" }
+];
+const bootLog = document.getElementById('bootLog');
+const bootTitle = document.getElementById('bootTitle');
+const bootScreen = document.getElementById('bootScreen');
+let bootTimers = [];
+function bootLater(fn, ms) {
+  const timer = window.setTimeout(fn, ms);
+  bootTimers.push(timer);
+}
+function glitchText(el) {
+  if (!el || !document.getElementById('bootScreen')) return;
+  el.classList.add('glitch');
+  if (bootTitle && Math.random() > .45) bootTitle.classList.add('glitch-now');
+  bootLater(() => {
+    el.classList.remove('glitch');
+    if (bootTitle) bootTitle.classList.remove('glitch-now');
+  }, 300);
+}
+function typeDiagnosticLine(el, text, speed, done) {
+  let i = 0;
+  el.textContent = '';
+  function tick() {
+    if (!document.getElementById('bootScreen')) return;
+    el.textContent = text.slice(0, i);
+    if (i < text.length) {
+      i++;
+      if (Math.random() > .94) glitchText(el);
+      bootLater(tick, speed + Math.random() * 18);
+    } else if (done) done();
+  }
+  tick();
+}
+function runBootSequence() {
+  if (!bootLog || !bootScreen) return;
+  bootLog.innerHTML = '';
+  const progress = document.querySelector('.boot-progress span');
+  const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let index = 0;
 
+  function nextCheck() {
+    if (!document.getElementById('bootScreen')) return;
+    if (index >= bootChecks.length) {
+      const final = document.createElement('div');
+      final.className = 'boot-line active boot-result';
+      final.textContent = '> ДОБРО ПОЖАЛОВАТЬ В БЮРО';
+      bootLog.appendChild(final);
+      if (progress) progress.style.width = '100%';
+      return;
+    }
+
+    const check = bootChecks[index];
+    const block = document.createElement('div');
+    block.className = 'boot-check';
+    const heading = document.createElement('div');
+    heading.className = 'boot-line active';
+    const detail = document.createElement('div');
+    detail.className = 'boot-line boot-detail';
+    const status = document.createElement('div');
+    status.className = 'boot-line boot-result';
+    block.append(heading, detail, status);
+    bootLog.appendChild(block);
+
+    typeDiagnosticLine(heading, '> ' + check.label, reducedMotion ? 0 : 11, () => {
+      if (reducedMotion) {
+        detail.textContent = '  ' + check.detail + ' ...';
+        status.textContent = '  ' + check.result;
+        finishCheck();
+        return;
+      }
+      let dots = 0;
+      function animateDots() {
+        if (!document.getElementById('bootScreen')) return;
+        dots = (dots + 1) % 4;
+        detail.textContent = '  ' + check.detail + '.'.repeat(dots);
+        if (dots === 2 && Math.random() > .5) glitchText(heading);
+        if (dots < 3) {
+          bootLater(animateDots, 150);
+        } else {
+          bootLater(() => {
+            status.textContent = '  ' + check.result;
+            status.classList.add('boot-ok');
+            if (Math.random() > .3) glitchText(status);
+            bootLater(finishCheck, 240);
+          }, 160);
+        }
+      }
+      animateDots();
+    });
+
+    function finishCheck() {
+      index++;
+      if (progress) progress.style.width = Math.round((index / bootChecks.length) * 100) + '%';
+      bootLater(nextCheck, reducedMotion ? 30 : 140);
+    }
+  }
+  nextCheck();
+}
+runBootSequence();
+bootLater(() => {
+  const boot = document.getElementById('bootScreen');
+  if (boot) {
+    boot.classList.add('boot-finished');
+    boot.setAttribute('aria-hidden', 'true');
+    window.setTimeout(() => boot.remove(), 900);
+  }
+}, 11500);
 const dossiers={
 elliot:{code:"REC // R-017 // RESTRICTED",title:"Elliot Hale",sub:"FORCE-DRAFTED ROOKIE / CONTRACT HOST",text:"Семнадцатилетний новобранец Бюро, оказавшийся внутри системы не по собственной воле. Замкнутый, саркастичный и истощённый, он отвечает на давление упрямством и открытым сопротивлением. Его спектральный контракт подавлен, но не устранён; кинетический резонанс остаётся нестабильным.",rows:[["Возраст","17"],["Статус","Новобранец / субъект принудительного призыва"],["Резонанс","Кинетический, нестабильный"],["Контракт","Lumina Lior — сведения ограничены"],["Контроль","Ингибиторный ошейник и печати подавления"]]},
 kael:{code:"REC // HND-052-II // GAMMA",title:"Kael Moran",sub:"SECOND-GENERATION HOUND / OPERATIONAL PROFILE",text:"Гончая второго поколения, специализирующаяся на оперативной работе и регенеративном профиле. Каэл производит впечатление спокойного и доступного человека; внимательность, дипломатичность и стратегическое мышление сочетаются в нём с серьёзной физической силой.",rows:[["Возраст","25"],["Рост","188 см"],["Регистрационный номер","HND-052-II"],["Подтип","Gamma"],["Профиль","Gentle Protector / Calm Strategist"]]},
