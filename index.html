@@ -282,6 +282,15 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding-top:22px;display
 @media(max-width:520px){.incident-thumb{height:170px}.incident-card .card-top,.incident-card h3,.incident-card>p,.incident-card .record-list,.incident-card .card-foot{margin-left:14px;margin-right:14px}.modal-backdrop{padding:8px}.modal-content{padding:16px}.modal-content h2{font-size:23px}.modal-content .evidence-large{max-height:42vh}}
 
 </style>
+
+<style id="hero-emblem-overlap-fix">
+/* The banner artwork already contains the Spectrum emblem. Disable extra CSS emblems/rings. */
+.hero-emblem,
+.hero-emblem::before,
+.hero-emblem::after,
+.hero-art::before,
+.hero-art::after { display: none !important; content: none !important; background: none !important; box-shadow: none !important; border: 0 !important; animation: none !important; }
+</style>
 </head>
 <body>
 <div class="boot-screen" id="bootScreen" aria-label="Запуск Протокола Спектр">
