@@ -73,7 +73,7 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding-top:22px;display
 .boot-sub{font-size:10px;letter-spacing:.19em;color:#9e9279;margin-top:9px}
 .boot-log{margin:24px auto 12px;max-width:420px;min-height:6.2em;text-align:left;color:#a99a78;font-size:10px;line-height:1.9;border-left:1px solid #8d6b37;padding-left:12px}.boot-log .boot-line{display:block;min-height:1.9em;transition:opacity .12s,color .12s,text-shadow .12s}.boot-log .boot-line.active{color:#f3d28b;text-shadow:0 0 8px #e6bd6766}.boot-log .boot-line.glitch{animation:logGlitch .18s steps(2,end) 2;color:#fff0c2;text-shadow:-3px 0 #f1e2bd,3px 0 #a45b2c;transform:translateX(2px)}.boot-check{margin-bottom:5px}.boot-detail{padding-left:10px;color:#93866c;min-height:1.5em}.boot-result{padding-left:10px;color:#e6bd67;min-height:1.5em;font-weight:700;text-shadow:0 0 7px #e6bd6744}.boot-screen.boot-finished{animation:bootFade .8s ease forwards}.boot-title.glitch-now{animation:titleGlitch .16s steps(2,end) 2}
 .boot-progress{height:3px;background:#2b251a;max-width:420px;margin:0 auto;overflow:hidden}
-.boot-progress span{display:block;height:100%;width:0;background:#e6bd67;box-shadow:0 0 12px #e6bd67;animation:bootLoad 10.8s ease forwards}
+.boot-progress span{display:block;height:100%;width:0;background:#e6bd67;box-shadow:0 0 12px #e6bd67;animation:bootLoad 6.5s ease forwards}
 .boot-corner{position:absolute;z-index:2;font-size:9px;letter-spacing:.12em;color:#8f7445}.boot-corner.tl{top:32px;left:34px}.boot-corner.br{right:34px;bottom:30px;text-align:right}
 @keyframes bootFade{to{opacity:0;visibility:hidden}}
 @keyframes bootIn{from{opacity:0;transform:scale(.97);filter:blur(4px)}to{opacity:1;transform:scale(1);filter:blur(0)}}
@@ -258,6 +258,7 @@ function runBootSequence() {
       const final = document.createElement('div');
       final.className = 'boot-line active boot-result';
       final.textContent = '> ДОБРО ПОЖАЛОВАТЬ В БЮРО';
+      while (bootLog.children.length >= 3) bootLog.firstElementChild.remove();
       bootLog.appendChild(final);
       if (progress) progress.style.width = '100%';
       return;
@@ -266,6 +267,12 @@ function runBootSequence() {
     const check = bootChecks[index];
     const block = document.createElement('div');
     block.className = 'boot-check';
+    // Keep the boot display compact: show no more than three diagnostic groups.
+    while (bootLog.querySelectorAll('.boot-check').length >= 3) {
+      const oldest = bootLog.querySelector('.boot-check');
+      if (!oldest) break;
+      oldest.remove();
+    }
     const heading = document.createElement('div');
     heading.className = 'boot-line active';
     const detail = document.createElement('div');
@@ -275,7 +282,7 @@ function runBootSequence() {
     block.append(heading, detail, status);
     bootLog.appendChild(block);
 
-    typeDiagnosticLine(heading, '> ' + check.label, reducedMotion ? 0 : 11, () => {
+    typeDiagnosticLine(heading, '> ' + check.label, reducedMotion ? 0 : 6, () => {
       if (reducedMotion) {
         detail.textContent = '  ' + check.detail + ' ...';
         status.textContent = '  ' + check.result;
@@ -289,14 +296,14 @@ function runBootSequence() {
         detail.textContent = '  ' + check.detail + '.'.repeat(dots);
         if (dots === 2 && Math.random() > .5) glitchText(heading);
         if (dots < 3) {
-          bootLater(animateDots, 150);
+          bootLater(animateDots, 85);
         } else {
           bootLater(() => {
             status.textContent = '  ' + check.result;
             status.classList.add('boot-ok');
             if (Math.random() > .3) glitchText(status);
-            bootLater(finishCheck, 240);
-          }, 160);
+            bootLater(finishCheck, 120);
+          }, 90);
         }
       }
       animateDots();
@@ -305,7 +312,7 @@ function runBootSequence() {
     function finishCheck() {
       index++;
       if (progress) progress.style.width = Math.round((index / bootChecks.length) * 100) + '%';
-      bootLater(nextCheck, reducedMotion ? 30 : 140);
+      bootLater(nextCheck, reducedMotion ? 20 : 75);
     }
   }
   nextCheck();
