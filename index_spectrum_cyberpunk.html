@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111214">
+<title>SPECTRUM PROTOCOL // Внутренний архив</title>
+<style>
+:root{--bg:#0d0e10;--panel:#15171a;--panel2:#1b1e22;--line:#30343a;--text:#e9e9e7;--muted:#969ba3;--red:#8f6a3d;--red2:#e6bd67;--gold:#d8a85b;--green:#83b8a0;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;--sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55}button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+.noise{position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:5;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E")}
+.topline{height:4px;background:linear-gradient(90deg,var(--red2) 0 18%,#392c20 18% 100%)}
+header{position:sticky;top:0;z-index:10;background:rgba(13,14,16,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{max-width:1240px;margin:auto;padding:14px 24px;display:flex;align-items:center;gap:22px}
+.brand{display:flex;align-items:center;gap:12px;min-width:230px}
+.logo{width:42px;height:42px;border:1px solid var(--red);display:grid;place-items:center;position:relative;background:#17130f;overflow:hidden}.logo img{width:90%;height:90%;object-fit:contain;filter:sepia(.2) saturate(.8);position:relative;z-index:1}
+.logo:before,.logo:after{content:"";position:absolute;background:var(--red2);opacity:.8;z-index:2;pointer-events:none}.logo:before{height:1px;width:48px;left:-6px;top:18px}.logo:after{width:1px;height:48px;top:-6px;left:18px}
+.brand-name{font:700 13px var(--mono);letter-spacing:.13em}.brand-sub{font:10px var(--mono);color:var(--muted);letter-spacing:.12em;margin-top:3px}
+nav{display:flex;gap:5px;flex:1;align-items:center}nav button{background:transparent;color:var(--muted);border:1px solid transparent;padding:9px 12px;font:11px var(--mono);letter-spacing:.06em}nav button:hover,nav button.active{color:var(--text);border-color:var(--line);background:var(--panel)}
+.status{font:10px var(--mono);color:var(--green);white-space:nowrap}.status i{display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:7px;box-shadow:0 0 8px #83b8a055}
+main{max-width:1240px;margin:auto;padding:0 24px 80px}
+.hero{padding:72px 0 48px;display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:center;border-bottom:1px solid var(--line)}
+.eyebrow{font:11px var(--mono);letter-spacing:.18em;color:var(--red2);display:flex;align-items:center;gap:10px}.eyebrow:before{content:"";width:26px;height:1px;background:var(--red)}
+h1{font-size:clamp(38px,6vw,72px);line-height:.99;letter-spacing:-.055em;margin:22px 0 20px;font-weight:750}h1 span{color:var(--red2)}.lead{max-width:650px;color:#b4b7bc;font-size:16px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.btn{padding:12px 16px;border:1px solid var(--line);background:var(--panel);color:var(--text);font:11px var(--mono);letter-spacing:.05em}.btn.primary{background:var(--red);border-color:var(--red);color:#fff}.btn:hover{border-color:var(--red2);transform:translateY(-1px)}
+.hero-art{border:1px solid #7b674b;background:#17130f url("./spectrum-banner.jpg") center/cover no-repeat;min-height:300px;display:grid;place-items:center;position:relative;overflow:hidden;isolation:isolate}.banner-shade{position:absolute;inset:0;background:linear-gradient(90deg,#100e0bd9,#100e0b55 48%,#100e0bd1),linear-gradient(0deg,#100e0b77,transparent 45%);z-index:-1}.hero-art:before,.hero-art:after{content:"";position:absolute;border:1px solid #d8bd8733;border-radius:50%;width:270px;height:270px;pointer-events:none}.hero-art:after{width:210px;height:210px}.hero-emblem{width:148px;height:148px;display:grid;place-items:center;z-index:1;filter:drop-shadow(0 0 18px #d8bd8730);animation:emblemPulse 7s ease-in-out infinite}.hero-emblem img{width:100%;height:100%;object-fit:contain;filter:sepia(.22) saturate(.82)}.scanline{position:absolute;left:0;right:0;height:1px;background:#e2c18a55;top:50%;animation:scan 6s linear infinite;z-index:2}.glitch-line{position:absolute;left:0;right:0;height:2px;background:#e2c18a66;opacity:0;z-index:3;pointer-events:none}.gl1{top:34%;animation:glitch 8s steps(1,end) infinite}.gl2{top:68%;animation:glitch 11s steps(1,end) infinite reverse}.logo img{animation:microGlitch 9s steps(1,end) infinite}@keyframes scan{0%{transform:translateY(-140px);opacity:0}15%{opacity:.8}85%{opacity:.45}100%{transform:translateY(150px);opacity:0}}@keyframes glitch{0%,91%,94%,100%{opacity:0;transform:translateX(0)}92%{opacity:.8;transform:translateX(-8px)}93%{opacity:.45;transform:translateX(5px)} }@keyframes microGlitch{0%,96%,98%,100%{transform:translate(0)}97%{transform:translate(1px,-1px);clip-path:inset(20% 0 50% 0)}}@keyframes emblemPulse{0%,100%{opacity:.94;transform:scale(1)}50%{opacity:1;transform:scale(1.025)} }@media(prefers-reduced-motion:reduce){.scanline,.gl1,.gl2,.logo img,.hero-emblem{animation:none}}
+.art-label{position:absolute;font:9px var(--mono);color:#d8a85b;letter-spacing:.13em}.art-label.tl{top:18px;left:18px}.art-label.br{bottom:18px;right:18px;text-align:right}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}.metric{padding:22px 20px;border-right:1px solid var(--line)}.metric:first-child{padding-left:0}.metric:last-child{border:0}.metric strong{display:block;font:24px var(--mono);font-weight:500}.metric span{display:block;color:var(--muted);font:10px var(--mono);letter-spacing:.09em;margin-top:4px}
+.section{padding:52px 0 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:22px}.kicker{color:var(--red2);font:10px var(--mono);letter-spacing:.16em}.section h2{font-size:27px;letter-spacing:-.035em;margin:6px 0 0}.section-note{font:10px var(--mono);color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{background:var(--panel);border:1px solid var(--line);padding:20px;min-height:180px;transition:.18s;position:relative;overflow:hidden}.card:hover{border-color:#b58a46;transform:translateY(-2px)}.card:after{content:"";position:absolute;width:100px;height:100px;border:1px solid #ffffff08;border-radius:50%;right:-50px;bottom:-55px}
+/* Spectrum HUD frame language */
+.hero-art{clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px));box-shadow:inset 0 0 0 1px #e6bd6733,0 0 28px #d8a85b0b}
+.hero-art:after{border-radius:0;width:calc(100% - 22px);height:calc(100% - 22px);border-color:#d8a85b33;clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+.card,.record,.person,.metric,.modal{border-color:#4b402d}
+.card:before,.record:before,.person:before{content:"";position:absolute;top:0;left:0;width:26px;height:3px;background:var(--red2);box-shadow:0 0 9px #e6bd6733;pointer-events:none}
+.card:after{border-radius:0;border-color:#d8a85b18;clip-path:polygon(0 0,100% 0,100% 75%,75% 100%,0 100%)}
+.card:hover,.person:hover{border-color:#a77b3e;box-shadow:0 0 20px #d8a85b0b}
+.tag{border-color:#71552c;color:#e6bd67;background:#241c10}
+.tag.neutral{border-color:#4b402d;color:#aaa18e;background:#191816}
+.portrait:before{border-radius:0;border-color:#d8a85b55;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.portrait .classif{color:#e6bd67}
+.notice{border-left-color:var(--red2);color:#c9c0ad}
+.modal{clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}
+.btn.primary{background:#6f5127;border-color:#b58a46;color:#fff4dc}
+.logo{border-color:#a77b3e;box-shadow:inset 0 0 12px #d8a85b14}
+.logo:before,.logo:after{background:var(--red2)}
+.hero-art .art-label{color:#e6bd67}
+
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.tag{font:9px var(--mono);letter-spacing:.1em;padding:5px 7px;border:1px solid #71552c;color:#e6bd67;background:#241c10}.tag.neutral{border-color:var(--line);color:var(--muted);background:#1c1e21}.card h3{margin:22px 0 7px;font-size:18px}.card p{margin:0;color:var(--muted);font-size:13px;max-width:360px}.card-foot{margin-top:24px;display:flex;justify-content:space-between;align-items:center;color:#b3b6bb;font:10px var(--mono)}.arrow{color:var(--red2);font-size:16px}
+.searchrow{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}.search{flex:1;min-width:220px;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:12px 14px;outline:none}.search:focus{border-color:var(--red)}.filter{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:11px 12px;font:11px var(--mono)}
+.person-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.person{background:var(--panel);border:1px solid var(--line);padding:0;display:flex;flex-direction:column;text-align:left;color:inherit}.person:hover{border-color:var(--red)}.portrait{height:130px;background:linear-gradient(135deg,#24272c,#151619);display:flex;align-items:center;justify-content:center;position:relative;border-bottom:1px solid var(--line);overflow:hidden}.portrait:before{content:"";width:86px;height:86px;border:1px solid #d8a85b55;border-radius:50%;position:absolute}.portrait .initials{font:26px var(--mono);color:#e6bd67;z-index:1}.portrait .record{position:absolute;left:12px;top:10px;color:#747a82;font:9px var(--mono)}.portrait .classif{position:absolute;right:12px;bottom:10px;color:#e6bd67;font:9px var(--mono)}.person-body{padding:16px}.person h3{margin:0 0 4px;font-size:16px}.person .role{font:10px var(--mono);color:var(--red2);letter-spacing:.05em}.person p{font-size:12px;color:var(--muted);margin:12px 0 0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.record{border:1px solid var(--line);background:var(--panel);padding:22px}.record h3{margin:0 0 12px;font-size:16px}.record p{font-size:13px;color:var(--muted)}.redacted{background:#090a0b;color:#090a0b;padding:0 5px;user-select:none}.record-list{list-style:none;padding:0;margin:0}.record-list li{padding:12px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:15px;font-size:12px}.record-list small{font:10px var(--mono);color:var(--muted)}
+.notice{border-left:2px solid var(--red2);background:#1b1712;padding:18px 20px;margin-top:16px;color:#c9c0ad;font-size:13px}.notice b{font:11px var(--mono);color:var(--red2);display:block;margin-bottom:5px}
+footer{border-top:1px solid var(--line);margin-top:70px;padding-top:22px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font:10px var(--mono);letter-spacing:.06em}
+.view{display:none}.view.active{display:block}.empty{display:none;padding:24px;color:var(--muted);border:1px dashed var(--line);font:12px var(--mono)}
+.modal-backdrop{display:none;position:fixed;inset:0;background:#000b;z-index:30;padding:20px;align-items:center;justify-content:center}.modal-backdrop.open{display:flex}.modal{width:min(650px,100%);max-height:90vh;overflow:auto;background:#141619;border:1px solid #a77b3e;box-shadow:0 20px 80px #000b}.modal-head{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:center}.modal-head span{font:10px var(--mono);color:var(--red2)}.close{background:none;border:1px solid var(--line);color:var(--text);width:32px;height:32px}.modal-content{padding:24px}.modal-content h2{font-size:28px;margin:0 0 5px}.modal-content .sub{font:11px var(--mono);color:var(--red2)}.modal-content p{color:#b4b7bc;font-size:14px}.data-table{width:100%;border-collapse:collapse;margin-top:20px;font-size:12px}.data-table td{border-top:1px solid var(--line);padding:10px 5px}.data-table td:first-child{font:10px var(--mono);color:var(--muted);width:38%}
+@media(max-width:850px){.nav{flex-wrap:wrap;gap:12px}.brand{flex:1}nav{order:3;overflow:auto;width:100%;flex-basis:100%}.status{font-size:9px}.hero{grid-template-columns:1fr;padding-top:48px}.hero-art{min-height:230px}.grid,.person-grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(2,1fr)}.metric:nth-child(2){border-right:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}.metric:first-child{padding-left:0}.two-col{grid-template-columns:1fr}}
+@media(max-width:520px){main{padding:0 16px 50px}.nav{padding:12px 16px}.brand{min-width:0}.brand-name{font-size:11px}.brand-sub{font-size:9px}.status{display:none}nav button{padding:9px;font-size:10px}.hero{gap:28px;padding-top:40px}.lead{font-size:14px}.grid,.person-grid{grid-template-columns:1fr}.section{padding-top:40px}.section-head{align-items:start;flex-direction:column}.metric{padding:16px 10px}.metric strong{font-size:21px}.metric span{font-size:9px}.hero-art{min-height:200px}footer{flex-direction:column}}
+
+/* BOOT SEQUENCE + STRONGER SPECTRUM HUD */
+.boot-screen{position:fixed;inset:0;z-index:9999;background:#050607;color:#e6bd67;display:grid;place-items:center;overflow:hidden;font-family:var(--mono);animation:bootFade .8s ease 3.15s forwards;pointer-events:none}
+.boot-screen:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0 3px,#e6bd6708 4px 5px),radial-gradient(ellipse at center,#20201b 0,#08090a 58%,#020303 100%);}
+.boot-screen:after{content:"";position:absolute;inset:18px;border:1px solid #d8a85b80;clip-path:polygon(0 0,calc(100% - 34px) 0,100% 34px,100% 100%,34px 100%,0 calc(100% - 34px));box-shadow:inset 0 0 30px #d8a85b12}
+.boot-inner{position:relative;z-index:2;width:min(680px,86vw);text-align:center;animation:bootIn .65s ease both}
+.boot-mark{width:clamp(110px,20vw,180px);height:clamp(110px,20vw,180px);object-fit:contain;filter:drop-shadow(0 0 16px #e6bd6755);animation:bootPulse 1.1s ease-in-out infinite alternate;}
+.boot-echo{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:.18;filter:sepia(1) saturate(2);transform:translateX(5px);clip-path:inset(42% 0 34% 0);animation:bootEcho .22s steps(2,end) infinite}
+.boot-mark-wrap{width:clamp(110px,20vw,180px);height:clamp(110px,20vw,180px);position:relative;margin:0 auto 22px}
+.boot-title{font-size:clamp(17px,3vw,25px);letter-spacing:.22em;text-shadow:0 0 12px #d8a85b44;position:relative}
+.boot-title:before,.boot-title:after{content:attr(data-text);position:absolute;left:0;right:0;opacity:.45;overflow:hidden;pointer-events:none}
+.boot-title:before{color:#fff0c2;transform:translateX(-2px);clip-path:inset(0 0 55% 0);animation:bootEcho .3s steps(2,end) infinite}
+.boot-title:after{color:#b87936;transform:translateX(2px);clip-path:inset(50% 0 0 0);animation:bootEcho .24s steps(2,end) infinite reverse}
+.boot-sub{font-size:10px;letter-spacing:.19em;color:#9e9279;margin-top:9px}
+.boot-log{margin:24px auto 12px;max-width:420px;text-align:left;color:#a99a78;font-size:10px;line-height:1.9;border-left:1px solid #8d6b37;padding-left:12px}
+.boot-progress{height:3px;background:#2b251a;max-width:420px;margin:0 auto;overflow:hidden}
+.boot-progress span{display:block;height:100%;width:0;background:#e6bd67;box-shadow:0 0 12px #e6bd67;animation:bootLoad 2.55s ease forwards}
+.boot-corner{position:absolute;z-index:2;font-size:9px;letter-spacing:.12em;color:#8f7445}.boot-corner.tl{top:32px;left:34px}.boot-corner.br{right:34px;bottom:30px;text-align:right}
+@keyframes bootFade{to{opacity:0;visibility:hidden}}
+@keyframes bootIn{from{opacity:0;transform:scale(.97);filter:blur(4px)}to{opacity:1;transform:scale(1);filter:blur(0)}}
+@keyframes bootLoad{0%{width:0}35%{width:42%}68%{width:73%}100%{width:100%}}
+@keyframes bootPulse{from{transform:scale(.985);opacity:.8}to{transform:scale(1.02);opacity:1}}
+@keyframes bootEcho{0%,100%{opacity:.12;transform:translateX(0)}50%{opacity:.55;transform:translateX(4px)}}
+/* HUD corners, corner ticks and restrained scan effects */
+.card,.record,.person,.metric,.notice,.modal,.hero-art{position:relative}
+.card,.record,.person,.modal{background-image:linear-gradient(135deg,#d8a85b08 0 1px,transparent 1px 100%)}
+.card:before,.record:before,.person:before{width:42px;height:3px;box-shadow:0 0 12px #e6bd6744}
+.card:after{pointer-events:none}
+.hud-corner{position:absolute;width:17px;height:17px;border-color:#d8a85b;opacity:.85;pointer-events:none;z-index:4}
+.hud-corner.tl{top:5px;left:5px;border-top:1px solid;border-left:1px solid}
+.hud-corner.tr{top:5px;right:5px;border-top:1px solid;border-right:1px solid}
+.hud-corner.bl{bottom:5px;left:5px;border-bottom:1px solid;border-left:1px solid}
+.hud-corner.br{bottom:5px;right:5px;border-bottom:1px solid;border-right:1px solid}
+.hero-art:before{border-color:#d8a85b66;box-shadow:0 0 22px #d8a85b12}
+.hero-art .scanline{mix-blend-mode:screen}
+@media(prefers-reduced-motion:reduce){.boot-screen,.boot-mark,.boot-echo,.boot-title:before,.boot-title:after,.boot-progress span{animation:none}.boot-screen{display:none}}
+@media(max-width:700px){.boot-screen:after{inset:9px}.boot-corner.tl{top:18px;left:18px}.boot-corner.br{right:18px;bottom:18px}.boot-log{font-size:9px}.nav{flex-wrap:wrap;padding:12px 14px;gap:10px}.brand{min-width:0;flex:1}.brand-name{font-size:11px}nav{width:100%;overflow-x:auto;flex:0 0 100%;gap:3px}nav button{white-space:nowrap;padding:8px 10px}main{padding-left:14px;padding-right:14px}.hero{grid-template-columns:1fr;gap:24px;padding-top:42px}.hero-art{min-height:240px}.metrics{grid-template-columns:repeat(2,1fr)}.metric:nth-child(2){border-right:0}.grid,.person-grid,.two-col{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+
+<div class="boot-screen" id="bootScreen" aria-label="Запуск Протокола Спектр">
+  <div class="boot-corner tl">SPECTRUM // BOOT SEQUENCE 01</div>
+  <div class="boot-corner br">SECURE CHANNEL ESTABLISHED<br>INITIALIZING ARCHIVE...</div>
+  <div class="boot-inner">
+    <div class="boot-mark-wrap"><img class="boot-mark" src="./spectrum-logo.png" alt=""><img class="boot-echo" src="./spectrum-logo.png" alt=""></div>
+    <div class="boot-title" data-text="SPECTRUM PROTOCOL">SPECTRUM PROTOCOL</div>
+    <div class="boot-sub">BUREAU OF SPECTRAL OVERSIGHT</div>
+    <div class="boot-log">&gt; Проверка защищённого канала... OK<br>&gt; Синхронизация спектрального узла... OK<br>&gt; Загрузка архива и личных дел...</div>
+    <div class="boot-progress"><span></span></div>
+  </div>
+</div>
+
+<div class="noise"></div><div class="topline"></div>
+<header>
+ <div class="nav">
+  <a class="brand" href="#" aria-label="Spectrum Protocol — главная" onclick="showView('home');return false">
+   <div class="logo"><img src="./spectrum-logo.png" alt="Эмблема Протокола Спектр"></div><div><div class="brand-name">SPECTRUM PROTOCOL</div><div class="brand-sub">BUREAU OF SPECTRAL OVERSIGHT</div></div>
+  </a>
+  <nav aria-label="Основная навигация">
+   <button class="active" data-view="home">ОБЗОР</button><button data-view="personnel">ДОСЬЕ</button><button data-view="database">БАЗА ЗНАНИЙ</button><button data-view="incidents">ИНЦИДЕНТЫ</button>
+  </nav>
+  <div class="status"><i></i> INTERNAL SYSTEM ONLINE</div>
+ </div>
+</header>
+<main>
+<section id="view-home" class="view active">
+ <div class="hero">
+  <div>
+   <div class="eyebrow">ВНУТРЕННЯЯ СЕТЬ // ДОСТУП ОГРАНИЧЕН</div>
+   <h1>THE WORLD IS<br><span>UNDER CONTROL.</span></h1>
+   <p class="lead">Спектральные аномалии существуют. Бюро наблюдает, классифицирует и сдерживает их — сохраняя для внешнего мира иллюзию нормальности. Эта система создана не для того, чтобы объяснять всё. Некоторые сведения лучше оставить закрытыми.</p>
+   <div class="hero-actions"><button class="btn primary" onclick="showView('database')">ОТКРЫТЬ БАЗУ ЗНАНИЙ ↗</button><button class="btn" onclick="showView('personnel')">ЛИЧНЫЕ ДЕЛА</button></div>
+  </div>
+  <div class="hero-art" aria-label="Архивная эмблема Протокола Спектр"><div class="banner-shade"></div><div class="scanline"></div><div class="hero-emblem"><img src="./spectrum-logo.png" alt="Эмблема Spectrum Protocol"></div><div class="art-label tl">SP // CENTRAL NODE</div><div class="art-label br">MONITORING ACTIVE<br>AUTHORIZATION REQUIRED</div><span class="glitch-line gl1"></span><span class="glitch-line gl2"></span></div>
+ </div>
+ <div class="metrics">
+  <div class="metric"><strong>04</strong><span>ОТКРЫТЫХ РАЗДЕЛА</span></div><div class="metric"><strong>CLASS-?</strong><span>УРОВЕНЬ ДОСТУПА</span></div><div class="metric"><strong>ACTIVE</strong><span>МОНИТОРИНГ СПЕКТРА</span></div><div class="metric"><strong>██:██</strong><span>ВРЕМЯ ПОСЛЕДНЕЙ СИНХРОНИЗАЦИИ</span></div>
+ </div>
+ <section class="section">
+  <div class="section-head"><div><div class="kicker">01 // БЫСТРЫЙ ДОСТУП</div><h2>Системные разделы</h2></div><div class="section-note">SELECT A DIRECTORY</div></div>
+  <div class="grid">
+   <button class="card" onclick="showView('personnel')" style="text-align:left;color:inherit"><div class="card-top"><span class="tag">PERSONNEL</span><span class="arrow">↗</span></div><h3>Личные дела</h3><p>Сотрудники Бюро, оперативники, резонаторы и субъекты под наблюдением.</p><div class="card-foot"><span>ДОСЬЕ ПЕРСОНАЛА</span><span>01</span></div></button>
+   <button class="card" onclick="showView('database')" style="text-align:left;color:inherit"><div class="card-top"><span class="tag neutral">REFERENCE</span><span class="arrow">↗</span></div><h3>База знаний</h3><p>Структура Бюро, классификации, резонансные домены и протоколы.</p><div class="card-foot"><span>СПРАВОЧНИК</span><span>02</span></div></button>
+   <button class="card" onclick="showView('incidents')" style="text-align:left;color:inherit"><div class="card-top"><span class="tag">RESTRICTED</span><span class="arrow">↗</span></div><h3>Инциденты</h3><p>Нарушения сдерживания, нестабильные контракты и засекреченные события.</p><div class="card-foot"><span>ЖУРНАЛ СОБЫТИЙ</span><span>03</span></div></button>
+  </div>
+ </section>
+ <div class="notice"><b>⚠ СЛУЖЕБНОЕ УВЕДОМЛЕНИЕ</b>Несанкционированное распространение материалов внутренней сети может повлечь пересмотр допуска. Если вы видите этот экран, ваша сессия зарегистрирована.</div>
+</section>
+
+<section id="view-personnel" class="view">
+ <div class="section" style="padding-top:48px">
+  <div class="section-head"><div><div class="kicker">02 // PERSONNEL ARCHIVE</div><h2>Архив персонала</h2></div><div class="section-note">RECORDS // INTERNAL USE ONLY</div></div>
+  <p style="color:var(--muted);max-width:700px;font-size:13px;margin-top:-8px;margin-bottom:24px">Выберите запись, чтобы открыть доступные сведения. Часть информации намеренно скрыта или требует более высокого уровня допуска.</p>
+  <div class="searchrow"><input class="search" id="personSearch" type="search" placeholder="Поиск по имени, роли или классификации…" aria-label="Поиск по персонажам"><select class="filter" id="roleFilter" aria-label="Фильтр по роли"><option value="all">ВСЕ КАТЕГОРИИ</option><option value="hound">HOUND</option><option value="resonator">RESONATOR</option><option value="bureau">BUREAU</option><option value="subject">SUBJECT</option></select></div>
+  <div class="person-grid" id="personGrid">
+   <button class="person" data-name="Elliot Hale Эллиот Хейл rookie subject hound" data-role="subject" onclick="openDossier('elliot')"><div class="portrait"><span class="record">REC // R-017</span><span class="initials">EH</span><span class="classif">RESTRICTED</span></div><div class="person-body"><h3>Elliot Hale</h3><div class="role">FORCE-DRAFTED ROOKIE / SUBJECT</div><p>Семнадцатилетний новобранец с подавленным спектральным контрактом. Сопротивляется системе, в которую его принудительно втянули.</p></div></button>
+   <button class="person" data-name="Kael Moran Каэл Моран hound gamma" data-role="hound" onclick="openDossier('kael')"><div class="portrait"><span class="record">REC // HND-052-II</span><span class="initials">KM</span><span class="classif">GAMMA</span></div><div class="person-body"><h3>Kael Moran</h3><div class="role">SECOND-GENERATION HOUND</div><p>Спокойный, наблюдательный оперативный специалист. Мягкая манера общения скрывает физическую силу и стратегический склад ума.</p></div></button>
+   <button class="person" data-name="Nix Calder Никс Колдер hound alpha" data-role="hound" onclick="openDossier('nix')"><div class="portrait"><span class="record">REC // HND-047-II</span><span class="initials">NC</span><span class="classif">ALPHA</span></div><div class="person-body"><h3>Nix Calder</h3><div class="role">SECOND-GENERATION HOUND</div><p>Субъект второго биологического поколения. Досье требует расширенного допуска.</p></div></button>
+   <button class="person" data-name="Daniel Graves Дэниел Грейвс investigator resonator" data-role="resonator" onclick="openDossier('daniel')"><div class="portrait"><span class="record">REC // INV-204</span><span class="initials">DG</span><span class="classif">INVESTIGATOR</span></div><div class="person-body"><h3>Daniel Graves</h3><div class="role">INVESTIGATOR / RESONATOR</div><p>Следователь Бюро. Предпочитает наблюдение поспешным выводам, а кофе — корпоративным совещаниям.</p></div></button>
+   <button class="person" data-name="Elena Vasquez Елена Васкес administrator bureau" data-role="bureau" onclick="openDossier('elena')"><div class="portrait"><span class="record">REC // ADM-031</span><span class="initials">EV</span><span class="classif">ADMINISTRATION</span></div><div class="person-body"><h3>Elena Vasquez</h3><div class="role">BUREAU ADMINISTRATOR</div><p>Администратор с безупречной памятью на документы и почти нулевой терпимостью к беспорядку.</p></div></button>
+   <button class="person" data-name="Lumina Lior Люмина Лиор entity contract" data-role="subject" onclick="openDossier('lumina')"><div class="portrait"><span class="record">REC // ENT-Ω</span><span class="initials">L/L</span><span class="classif">UNSTABLE</span></div><div class="person-body"><h3>Lumina Lior</h3><div class="role">SPECTRAL ENTITY / CONTRACT</div><p>Высокоранговая сущность, связанная с детством Эллиота. Полная природа контракта не подтверждена.</p></div></button>
+  </div>
+  <div class="empty" id="emptyResults">НЕТ СОВПАДЕНИЙ // УТОЧНИТЕ ЗАПРОС</div>
+ </div>
+</section>
+
+<section id="view-database" class="view">
+ <div class="section" style="padding-top:48px">
+  <div class="section-head"><div><div class="kicker">03 // KNOWLEDGE BASE</div><h2>База знаний</h2></div><div class="section-note">REFERENCE MATERIAL // REV. 04</div></div>
+  <div class="grid">
+   <article class="card"><div class="card-top"><span class="tag">ORGANIZATION</span><span class="section-note">KB-001</span></div><h3>Bureau of Spectral Oversight</h3><p>Транснациональная система наблюдения, контроля и сдерживания спектральных аномалий. Для гражданского мира её деятельность остаётся невидимой.</p><div class="card-foot"><span>СТРУКТУРА / ПОЛНОМОЧИЯ</span><span>↗</span></div></article>
+   <article class="card"><div class="card-top"><span class="tag">CLASSIFICATION</span><span class="section-note">KB-014</span></div><h3>Hounds & Canaries</h3><p>Искусственно выведенные сенсорные субъекты, используемые для отслеживания, стабилизации и работы с резонансом. Их статус остаётся предметом конфликта.</p><div class="card-foot"><span>СТАТУС / ЭТИКА</span><span>↗</span></div></article>
+   <article class="card"><div class="card-top"><span class="tag neutral">ACADEMY</span><span class="section-note">KB-023</span></div><h3>Technical Academies</h3><p>Система подготовки специалистов, в которой обучение переплетено с контролем, оценкой риска и институциональной дисциплиной.</p><div class="card-foot"><span>ОБУЧЕНИЕ / ДОПУСК</span><span>↗</span></div></article>
+   <article class="card"><div class="card-top"><span class="tag">RESONANCE</span><span class="section-note">KB-031</span></div><h3>Resonance Domains</h3><p>Пространства и состояния, формируемые резонансом. Уровень угрозы зависит от устойчивости, границ и условий проявления.</p><div class="card-foot"><span>ТЕОРИЯ / ПРАКТИКА</span><span>↗</span></div></article>
+   <article class="card"><div class="card-top"><span class="tag">POLICY</span><span class="section-note">KB-042</span></div><h3>Status Reforms</h3><p>Политические изменения, вызвавшие раскол внутри системы и обострившие спор о правах и назначении искусственно созданных субъектов.</p><div class="card-foot"><span>ПОЛИТИКА / КОНФЛИКТ</span><span>↗</span></div></article>
+   <article class="card"><div class="card-top"><span class="tag">THREAT NETWORK</span><span class="section-note">KB-099</span></div><h3>The Ascended</h3><p>Экстремистская сеть, связанная с радикальным взглядом на спектральную эволюцию. Оценка численности и структуры неполная.</p><div class="card-foot"><span>УГРОЗА / НАБЛЮДЕНИЕ</span><span>↗</span></div></article>
+  </div>
+  <div class="notice"><b>ПРИМЕЧАНИЕ К РЕДАКЦИИ</b>Это стартовая версия справочника на основе доступных концепций мира. Детали, которых пока нет в утверждённом лоре, не следует считать каноном — их можно дополнять по мере разработки.</div>
+ </div>
+</section>
+
+<section id="view-incidents" class="view">
+ <div class="section" style="padding-top:48px">
+  <div class="section-head"><div><div class="kicker">04 // INCIDENT REGISTER</div><h2>Журнал инцидентов</h2></div><div class="section-note">PARTIAL LOG // REDACTIONS APPLIED</div></div>
+  <div class="two-col">
+   <article class="record"><div class="card-top"><span class="tag">CRITICAL</span><small class="section-note">INC-██-017</small></div><h3 style="margin-top:18px">Неконтролируемый резонанс</h3><p>Событие, связанное с проявлением нестабильной кинетической резонансной активности и последующим задержанием субъекта.</p><ul class="record-list"><li><span>Статус</span><small>ПОД НАБЛЮДЕНИЕМ</small></li><li><span>Связанный субъект</span><small>E. HALE</small></li><li><span>Протокол</span><small><span class="redacted">SUPPRESSION / ███</span></small></li></ul></article>
+   <article class="record"><div class="card-top"><span class="tag neutral">SEALED</span><small class="section-note">INC-██-Ω</small></div><h3 style="margin-top:18px">Контракт неустановленного типа</h3><p>Документы указывают на связь субъекта с высокоранговой сущностью. Причина, условия и пределы контракта не подтверждены.</p><ul class="record-list"><li><span>Статус</span><small>ЗАСЕКРЕЧЕНО</small></li><li><span>Уровень допуска</span><small>DIRECTORATE</small></li><li><span>Материалы</span><small>3 ФАЙЛА ИЗЪЯТЫ</small></li></ul></article>
+  </div>
+  <div class="notice"><b>ДОСТУП К ПОЛНОМУ ЖУРНАЛУ ОТКЛОНЁН</b>Некоторые записи здесь — демонстрационные элементы оформления. Добавьте утверждённые даты, последствия и детали событий, чтобы закрепить их в каноне.</div>
+ </div>
+</section>
+<footer><span>© SPECTRUM PROTOCOL // FAN-MADE WORLD ARCHIVE</span><span>BUILD 0.1.0 // ACCESS LOGGED</span></footer>
+</main>
+
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="if(event.target===this)closeDossier()">
+ <div class="modal"><div class="modal-head"><span id="modalCode">PERSONNEL RECORD</span><button class="close" onclick="closeDossier()" aria-label="Закрыть">×</button></div><div class="modal-content" id="modalContent"></div></div>
+</div>
+<script>
+
+// Small HUD corner brackets; safe to run after the document markup is parsed.
+document.querySelectorAll('.hero-art,.card,.record,.person,.modal').forEach(el=>{
+  ['tl','tr','bl','br'].forEach(pos=>{const corner=document.createElement('span');corner.className='hud-corner '+pos;corner.setAttribute('aria-hidden','true');el.appendChild(corner);});
+});
+// Remove the startup layer from the accessibility tree after the animation finishes.
+window.setTimeout(()=>{const boot=document.getElementById('bootScreen');if(boot){boot.setAttribute('aria-hidden','true');window.setTimeout(()=>boot.remove(),900);}},3300);
+
+const dossiers={
+elliot:{code:"REC // R-017 // RESTRICTED",title:"Elliot Hale",sub:"FORCE-DRAFTED ROOKIE / CONTRACT HOST",text:"Семнадцатилетний новобранец Бюро, оказавшийся внутри системы не по собственной воле. Замкнутый, саркастичный и истощённый, он отвечает на давление упрямством и открытым сопротивлением. Его спектральный контракт подавлен, но не устранён; кинетический резонанс остаётся нестабильным.",rows:[["Возраст","17"],["Статус","Новобранец / субъект принудительного призыва"],["Резонанс","Кинетический, нестабильный"],["Контракт","Lumina Lior — сведения ограничены"],["Контроль","Ингибиторный ошейник и печати подавления"]]},
+kael:{code:"REC // HND-052-II // GAMMA",title:"Kael Moran",sub:"SECOND-GENERATION HOUND / OPERATIONAL PROFILE",text:"Гончая второго поколения, специализирующаяся на оперативной работе и регенеративном профиле. Каэл производит впечатление спокойного и доступного человека; внимательность, дипломатичность и стратегическое мышление сочетаются в нём с серьёзной физической силой.",rows:[["Возраст","25"],["Рост","188 см"],["Регистрационный номер","HND-052-II"],["Подтип","Gamma"],["Профиль","Gentle Protector / Calm Strategist"]]},
+nix:{code:"REC // HND-047-II // ALPHA",title:"Nix Calder",sub:"SECOND-GENERATION HOUND",text:"Гончая второго биологического поколения с альфа-подтипом. Физически мощный и атлетичный, с пепельно-серой кожей, белыми волосами и золотисто-жёлтыми глазами. Ритуальные красные отметины и служебная экипировка являются частью его утверждённого визуального образа.",rows:[["Возраст","24"],["Регистрационный номер","HND-047-II"],["Подтип","Alpha"],["Поколение","Второе биологическое"],["Допуск","Частичный"]]},
+daniel:{code:"REC // INV-204 // INTERNAL",title:"Daniel Graves",sub:"INVESTIGATOR / RESONATOR",text:"Следователь и резонатор Бюро. Тёмно-каштановые волосы с серебряной прядью, тёмно-карие глаза и слегка небрежный вид. В рабочей обстановке сохраняет спокойствие и привычку наблюдать прежде, чем делать выводы.",rows:[["Роль","Следователь"],["Классификация","Resonator"],["Внешность","Тёмные волосы с серебряной прядью; карие глаза"],["Привычка","Кофе в кабинете между делами"]]},
+elena:{code:"REC // ADM-031 // INTERNAL",title:"Elena Vasquez",sub:"BUREAU ADMINISTRATOR",text:"Администратор Бюро, выглядящая моложе своего возраста. Каштановые волосы собраны в низкий пучок, прямоугольные очки, сухой невозмутимый взгляд. Её рабочее пространство организовано вокруг документов, архивных дел и чая.",rows:[["Роль","Администратор"],["Возраст","37"],["Внешность","Каштановые волосы, очки"],["Профиль","Точность, порядок, невозмутимость"]]},
+lumina:{code:"REC // ENT-Ω // SEALED",title:"Lumina Lior",sub:"HIGH-RANK SPECTRAL ENTITY / CONTRACT",text:"Высокоранговая спектральная сущность, связанная с детством Эллиота Хейла. Визуально описывается как чудовищный ангел: безликая дуга, заполненная зубами, и сломанный нимб. Истинные условия связи и мотивы сущности не раскрыты.",rows:[["Тип","Спектральная сущность"],["Уровень","Высокий / точная классификация закрыта"],["Связанный субъект","Elliot Hale"],["Статус","Нестабильный контракт"],["Доступ","Ограничен"]]}
+};
+function showView(name){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));const target=document.getElementById('view-'+name);if(target)target.classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===name));window.scrollTo({top:0,behavior:'smooth'});}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));
+function openDossier(id){const d=dossiers[id];if(!d)return;document.getElementById('modalCode').textContent=d.code;document.getElementById('modalContent').innerHTML=`<h2 id="modalTitle">${d.title}</h2><div class="sub">${d.sub}</div><p>${d.text}</p><table class="data-table">${d.rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}</table><div class="notice"><b>СЛУЖЕБНАЯ ПОМЕТКА</b>Материалы представлены в виде демонстрационного досье. Сверяйте детали с актуальным каноном вселенной.</div>`;document.getElementById('modalBackdrop').classList.add('open');document.body.style.overflow='hidden';}
+function closeDossier(){document.getElementById('modalBackdrop').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDossier()});
+function filterPeople(){const q=document.getElementById('personSearch').value.toLowerCase().trim(),r=document.getElementById('roleFilter').value;let count=0;document.querySelectorAll('.person').forEach(p=>{const ok=p.dataset.name.toLowerCase().includes(q)&&(r==='all'||p.dataset.role===r);p.style.display=ok?'flex':'none';if(ok)count++});document.getElementById('emptyResults').style.display=count?'none':'block'}
+document.getElementById('personSearch').addEventListener('input',filterPeople);document.getElementById('roleFilter').addEventListener('change',filterPeople);
+</script>
+</body>
+</html>
