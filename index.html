@@ -137,6 +137,11 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding-top:22px;display
   animation: panelSweep 10s linear infinite;
 }
 .card,.record,.person,.modal {overflow:hidden}
+/* FIX: long archive entries must remain scrollable on touch screens */
+.modal-backdrop.open {overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;}
+.modal {max-height:calc(100dvh - 32px); overflow-y:auto !important; overflow-x:hidden !important; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; touch-action:pan-y;}
+.modal-content {min-height:0; overflow:visible;}
+@media(max-width:520px){.modal-backdrop{padding:12px;align-items:flex-start}.modal{width:100%;max-height:calc(100dvh - 24px);margin:auto 0}.modal-head{position:sticky;top:0;z-index:5;background:#141619;padding:14px 16px}.modal-content{padding:18px 16px}.modal-content h2{font-size:24px}.data-table{overflow-wrap:anywhere}}
 .card:before,.record:before,.person:before {
   background:linear-gradient(90deg,#e6bd67,#fff0b3,#a77b3e);
   animation: topBarPulse 3.4s ease-in-out infinite;
