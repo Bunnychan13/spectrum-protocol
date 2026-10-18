@@ -97,6 +97,75 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding-top:22px;display
 @media(prefers-reduced-motion:reduce){.boot-screen,.boot-mark,.boot-echo,.boot-title:before,.boot-title:after,.boot-progress span{animation:none}.boot-screen{display:none}}
 @media(max-width:700px){.boot-screen:after{inset:9px}.boot-corner.tl{top:18px;left:18px}.boot-corner.br{right:18px;bottom:18px}.boot-log{font-size:9px}.nav{flex-wrap:wrap;padding:12px 14px;gap:10px}.brand{min-width:0;flex:1}.brand-name{font-size:11px}nav{width:100%;overflow-x:auto;flex:0 0 100%;gap:3px}nav button{white-space:nowrap;padding:8px 10px}main{padding-left:14px;padding-right:14px}.hero{grid-template-columns:1fr;gap:24px;padding-top:42px}.hero-art{min-height:240px}.metrics{grid-template-columns:repeat(2,1fr)}.metric:nth-child(2){border-right:0}.grid,.person-grid,.two-col{grid-template-columns:1fr}}
 
+
+/* Animated Spectrum HUD: moving geometry, scanning light, cyberpunk panel sweeps */
+.boot-mark-wrap::before,
+.boot-mark-wrap::after,
+.hero-emblem::before,
+.hero-emblem::after {
+  content:""; position:absolute; pointer-events:none; border-radius:50%;
+}
+.boot-mark-wrap::before {
+  inset:-10%; border:1px solid #e6bd675c;
+  background:repeating-radial-gradient(circle, transparent 0 12px, #e6bd671c 13px 14px, transparent 15px 22px);
+  animation: orbitLines 8s linear infinite;
+}
+.boot-mark-wrap::after {
+  left:-12%; right:-12%; top:50%; height:1px;
+  background:linear-gradient(90deg,transparent,#e6bd67,#fff0b8,#e6bd67,transparent);
+  box-shadow:0 0 9px #e6bd67aa;
+  animation: emblemScan 2.8s ease-in-out infinite;
+}
+.boot-mark-wrap {isolation:isolate}
+.boot-mark {position:relative;z-index:1}
+.boot-echo {z-index:2;pointer-events:none}
+.hero-emblem {position:relative;isolation:isolate}
+.hero-emblem::before {
+  inset:-15%; border:1px solid #d8a85b9c;
+  background:repeating-radial-gradient(circle, transparent 0 9px, #d8a85b2a 10px 11px, transparent 12px 17px);
+  animation: orbitLines 12s linear infinite;
+}
+.hero-emblem::after {
+  left:-55%; right:-55%; top:50%; height:1px;
+  background:linear-gradient(90deg,transparent,#d8a85b,#fff0b9,#d8a85b,transparent);
+  box-shadow:0 0 10px #e6bd67aa;
+  animation: emblemScan 3.2s ease-in-out infinite;
+}
+.hero-emblem img {position:relative;z-index:1}
+.logo {isolation:isolate}
+.logo img {animation: tinyLogoFlicker 5.8s steps(1,end) infinite}
+.logo:before {animation: logoSweep 2.7s linear infinite}
+.logo:after {animation: logoSweepV 3.5s linear infinite}
+.hero-art {background-size:cover; }
+.hero-art .scanline {height:2px;box-shadow:0 0 12px #e6bd6755}
+.card,.record,.person,.metric,.notice,.modal {
+  background-image:
+    linear-gradient(135deg,#d8a85b08 0 1px,transparent 1px 100%),
+    linear-gradient(112deg,transparent 0%,transparent 42%,#e6bd670b 49%,transparent 56%,transparent 100%);
+  background-size:100% 100%, 240% 100%;
+  animation: panelSweep 10s linear infinite;
+}
+.card,.record,.person,.modal {overflow:hidden}
+.card:before,.record:before,.person:before {
+  background:linear-gradient(90deg,#e6bd67,#fff0b3,#a77b3e);
+  animation: topBarPulse 3.4s ease-in-out infinite;
+}
+.card:hover,.record:hover,.person:hover {
+  box-shadow:inset 0 0 24px #d8a85b0c,0 0 16px #d8a85b15;
+}
+@keyframes orbitLines {from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes emblemScan {0%,100%{transform:translateY(-54px);opacity:.12}50%{transform:translateY(54px);opacity:.9}}
+@keyframes logoSweep {0%{transform:translateX(-5px);opacity:.25}50%{transform:translateX(5px);opacity:1}100%{transform:translateX(-5px);opacity:.25}}
+@keyframes logoSweepV {0%{transform:translateY(-5px);opacity:.3}50%{transform:translateY(5px);opacity:1}100%{transform:translateY(-5px);opacity:.3}}
+@keyframes panelSweep {0%{background-position:0 0,-150% 0}100%{background-position:0 0,150% 0}}
+@keyframes topBarPulse {0%,100%{filter:brightness(.85);width:30px}50%{filter:brightness(1.5);width:68px}}
+@keyframes tinyLogoFlicker {0%,94%,96%,100%{opacity:1;transform:translateX(0)}95%{opacity:.72;transform:translateX(1px)}97%{opacity:.9;transform:translateX(-1px)}}
+@media(prefers-reduced-motion:reduce) {
+ .boot-mark-wrap::before,.boot-mark-wrap::after,.hero-emblem::before,.hero-emblem::after,
+ .logo img,.logo:before,.logo:after,.card,.record,.person,.metric,.notice,.modal,
+ .card:before,.record:before,.person:before {animation:none!important}
+}
+
 </style>
 </head>
 <body>
