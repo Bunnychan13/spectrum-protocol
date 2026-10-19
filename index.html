@@ -281,6 +281,12 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding-top:22px;display
 .modal-content .entry-label{color:#d4b16d}
 @media(max-width:520px){.incident-thumb{height:170px}.incident-card .card-top,.incident-card h3,.incident-card>p,.incident-card .record-list,.incident-card .card-foot{margin-left:14px;margin-right:14px}.modal-backdrop{padding:8px}.modal-content{padding:16px}.modal-content h2{font-size:23px}.modal-content .evidence-large{max-height:42vh}}
 
+
+.site-footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px}
+.site-footer .creator-credit{flex-basis:100%;display:block;padding-top:13px;border-top:1px solid rgba(197,158,91,.22);color:#b9a57c;font:10px/1.7 var(--mono);letter-spacing:.09em;text-decoration:none;transition:color .2s ease}
+.site-footer .creator-credit strong{color:#e2c58d;font-weight:600}
+.site-footer .creator-credit:hover{color:#f2dfb5}
+@media(max-width:640px){.site-footer{align-items:flex-start;flex-direction:column}.site-footer .creator-credit{width:100%;box-sizing:border-box}}
 </style>
 
 <style id="hero-emblem-overlap-fix">
@@ -460,7 +466,13 @@ footer{border-top:1px solid var(--line);margin-top:70px;padding-top:22px;display
   <div class="notice"><b>СТАНДАРТ РЕАГИРОВАНИЯ</b>При обнаружении сигнатуры Бюро оценивает источник, тип резонанса, наличие сущности, радиус воздействия и признаки заражения. При подтверждении угрозы могут вводиться изоляция территории, эвакуация, карантин, подавляющие печати и оперативная связка. Процедуры не гарантируют безопасного исхода.</div>
  </div>
 </section>
-<footer><span>SPECTRUM PROTOCOL // CENTRAL ARCHIVE</span><span>RESTRICTED MATERIAL // ACCESS LOGGED</span></footer>
+<footer class="site-footer">
+  <span>SPECTRUM PROTOCOL // CENTRAL ARCHIVE</span>
+  <span>RESTRICTED MATERIAL // ACCESS LOGGED</span>
+  <a class="creator-credit" href="https://t.me/Usagi_s_Cabinet" target="_blank" rel="noopener noreferrer" aria-label="Авторская вселенная и материалы — Usagi's Cabinet">
+    ORIGINAL UNIVERSE &amp; MATERIALS // <strong>USAGI'S CABINET</strong> ↗
+  </a>
+</footer>
 </main>
 
 <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="if(event.target===this)closeDossier()">
